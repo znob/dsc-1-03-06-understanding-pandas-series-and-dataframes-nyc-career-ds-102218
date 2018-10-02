@@ -1,4 +1,17 @@
 
+# Understanding Pandas Series and DataFrames
+
+## Introduction
+
+In this lesson, we're digging into Pandas Series and DataFrames - the two main data types you'll work with.
+
+## Objectives
+You will be able to:
+* Understand and explain what Pandas Series and DataFrames are and how they differ from dictionaries and lists
+* Create Series & DataFrames from dictionaries and lists
+* Manipulate columns in DataFrames (df.rename, df.drop)
+* Manipulate the index in DataFrames (df.reindex, df.drop, df.rename)
+
 # Import pandas and other packages to be used
 
 
@@ -858,5 +871,10 @@ plt.xlabel('Number of Entries/Exits');
 ```
 
 
-![png](index_files/index_39_0.png)
+![png](index_files/index_42_0.png)
+
+
+## Summary
+
+We've seen in this lesson the differences between Pandas (Series and DataFrames) and Python native (Dictionaries and Lists) data types. We've also looked at how to create the Series and DataFrames from dictionaries and lists, and how to manipulate both columns and the index in DataFrame. In the next lesson, we'll get some more hands on practice. 
 
