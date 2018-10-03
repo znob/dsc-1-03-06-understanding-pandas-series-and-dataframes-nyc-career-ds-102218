@@ -13,7 +13,30 @@ You will be able to:
 * Manipulate the index in DataFrames (df.reindex, df.drop, df.rename)
 * Manipulate column datatypes
 
-# Import pandas and other packages to be used
+## Pandas Data Types vs. Native Python Data Types
+
+Python lists and Pandas Series are conceptually similar. They are both a single dimensional ordered set. Lets break that down. Single dimensional means that they could hold a list of hotel names, but they probably wouldn't be a good way to store a list of hotel names and phone numbers:
+
+This works:
+`hotels = ["Travelodge Cleveland", "Marriot Times Square"]`
+
+This is not ideal
+`hotels = ["Travelodge Cleveland", "216-440-7865", "Marriot Times Square", "212'415-2551"]`
+
+And ordered sets means that the order of the elements within them matters
+
+` [1, 2, 3] does not equal [2, 3, 1]`
+
+However, a Series is designed to work efficiently with much larger data sets and has a number of features that make it easier to apply transformations to the data. As such, when you're working with one dimensional data sets, you'll probably want to use Series most of the time.
+
+Simiularly, when you have more complex data, you might be able to store it using Python dictionaries, but you're generally going to get better performance and a wide range of really helpful additional methods if you store it in a Pandas DataFrame instead.
+
+
+## Setup
+
+Lets take a little time to import the packages we need and to import and previuew a dataset...
+
+## Import pandas and other packages to be used
 
 
 ```python
@@ -22,7 +45,7 @@ import matplotlib.pyplot as plt
 %matplotlib inline
 ```
 
-# Import and preview a dataset
+## Import and preview a dataset
 
 
 ```python
@@ -171,13 +194,13 @@ df.info()
 
 
 # Data Munging/ Manipulation
-This MTA turnstile dataset is a great place for us to get our hands dirty wrnagling and cleaning some data!  
+This MTA turnstile dataset is a great place for us to get our hands dirty wrangling and cleaning some data!  
 
-Let's start by example by filtering the data down to all stations for the N line. To do this, we'll need to extract all "N"s from the LINENAME column, or similarly, create a column indicating whether or not the stop is an N line stop.
+Let's start by filtering the data down to all stations for the N line. To do this, we'll need to extract all "N"s from the LINENAME column, or create a column indicating whether or not the stop is an N line stop.
 
 ### Defining Functions
 
-At this point, we will need to define some functions to perform data manipulation. In python, we define a function using the `def` keyword. Afterwords, we give the function a name, followed by parentheses. Any required (or optional parameters) are specified within the parentheses, just as you would normally call a function. You then specify the functions behavior using a colon and an indendation, much the same way you would a for loop or conditional block. Finally, if you want your function to return something (as with the str.pop() method) as opposed to a function that simply does something in the background but returns nothing (such as list.append()), you must use the `return` keyword. Note that as soon as a function hits a point in execution where something is returned, the function would terminate and no further commands would be executed. In other words the `return` command both returns a value and forces termination of the function.
+At this point, we will need to define some functions to perform data manipulation so that we can reuse them easily. In Python, we define a function using the `def` keyword. Afterwords, we give the function a name, followed by parentheses. Any required (or optional parameters) are specified within the parentheses, just as you would normally call a function. You then specify the functions behavior using a colon and an indendation, much the same way you would a for loop or conditional block. Finally, if you want your function to return something (as with the str.pop() method) as opposed to a function that simply does something in the background but returns nothing (such as list.append()), you must use the `return` keyword. Note that as soon as a function hits a point in execution where something is returned, the function would terminate and no further commands would be executed. In other words the `return` command both returns a value and forces termination of the function.
 
 
 ```python
@@ -368,7 +391,7 @@ Above we used the map method for pandas series. This allows us to pass a functio
 This is shorter and equivalent to the above functions defined above. Lambda functions are often more covenient shorthand, but have less functionality then defining functions explicitly.
 
 # Cleaning Column Names
-Sometimes, you have messy column names. Observe:
+Sometimes, you have messy column names
 
 
 ```python
@@ -1056,8 +1079,3 @@ df.head()
 
 # Summary
 We've seen in this lesson the differences between Pandas (Series and DataFrames) and Python native (Dictionaries and Lists) data types. We've also looked at how to create the Series and DataFrames from dictionaries and lists, and how to manipulate both columns and the index in DataFrame. 
-
-
-```python
-
-```
