@@ -15,22 +15,7 @@ You will be able to:
 
 ## Pandas Data Types vs. Native Python Data Types
 
-Python lists and Pandas Series are conceptually similar. They are both a single dimensional ordered set. Lets break that down. Single dimensional means that they could hold a list of hotel names, but they probably wouldn't be a good way to store a list of hotel names and phone numbers:
-
-This works:
-`hotels = ["Travelodge Cleveland", "Marriot Times Square"]`
-
-This is not ideal
-`hotels = ["Travelodge Cleveland", "216-440-7865", "Marriot Times Square", "212'415-2551"]`
-
-And ordered sets means that the order of the elements within them matters
-
-` [1, 2, 3] does not equal [2, 3, 1]`
-
-However, a Series is designed to work efficiently with much larger data sets and has a number of features that make it easier to apply transformations to the data. As such, when you're working with one dimensional data sets, you'll probably want to use Series most of the time.
-
-Simiularly, when you have more complex data, you might be able to store it using Python dictionaries, but you're generally going to get better performance and a wide range of really helpful additional methods if you store it in a Pandas DataFrame instead.
-
+As we'll see as we talk more about object orientated programming, using Pandas Series and DataFrames instead of built in Python datatypes can have a range of benefits.  Most importantly is that Series and DataFrames have a range of built in methods which make standard practices and procedures streamlined. This includes many of the methods we have investigated such as groupby, columns and value_counts.
 
 ## Setup
 
