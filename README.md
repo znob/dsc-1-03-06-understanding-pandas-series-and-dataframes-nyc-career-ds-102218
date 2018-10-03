@@ -11,6 +11,7 @@ You will be able to:
 * Create Series & DataFrames from dictionaries and lists
 * Manipulate columns in DataFrames (df.rename, df.drop)
 * Manipulate the index in DataFrames (df.reindex, df.drop, df.rename)
+* Manipulate column datatypes
 
 # Import pandas and other packages to be used
 
@@ -37,17 +38,17 @@ df.head()
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
     }
 
     .dataframe tbody tr th {
         vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
     }
 </style>
 <table border="1" class="dataframe">
@@ -699,152 +700,119 @@ df.DATE.dt.day_name().head()
 
 
 
-# Groupby Methods
-Let's look at one more extremely important method. Groupby allows you to aggregate the data based on a field. You then apply an aggregation function such as *mean*, *median*, *count*, *min*, *max*, or even a custom function which you can define yourself!
+# Renaming Columns
+You can rename columns using dictionaries as follows:
 
 
 ```python
-df.groupby('STATION').sum().head()
+df = df.rename(columns={'DATE' : 'date'})
+df.head()
 ```
 
 
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
     }
 
     .dataframe tbody tr th {
         vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
     }
 </style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>C/A</th>
+      <th>UNIT</th>
+      <th>SCP</th>
+      <th>STATION</th>
+      <th>LINENAME</th>
+      <th>DIVISION</th>
+      <th>date</th>
+      <th>TIME</th>
+      <th>DESC</th>
       <th>ENTRIES</th>
       <th>EXITS</th>
-      <th>On_N_Line</th>
-    </tr>
-    <tr>
-      <th>STATION</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1 AV</th>
-      <td>127637422994</td>
-      <td>68336694378</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>103 ST</th>
-      <td>6809043268</td>
-      <td>26408857862</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>103 ST-CORONA</th>
-      <td>2936772648</td>
-      <td>3007136644</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>104 ST</th>
-      <td>201698739525</td>
-      <td>146808927663</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>110 ST</th>
-      <td>1485948761</td>
-      <td>1430806219</td>
-      <td>0.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-Notice that our groupby column becomes the index of the resulting view. To change this, you can also use the `.reset_index()` method.
-
-
-```python
-df.groupby('STATION').sum().reset_index().head()
-```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>STATION</th>
-      <th>ENTRIES</th>
-      <th>EXITS</th>
-      <th>On_N_Line</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>1 AV</td>
-      <td>127637422994</td>
-      <td>68336694378</td>
-      <td>0.0</td>
+      <td>A002</td>
+      <td>R051</td>
+      <td>02-00-00</td>
+      <td>59 ST</td>
+      <td>NQR456W</td>
+      <td>BMT</td>
+      <td>08/25/2018</td>
+      <td>00:00:00</td>
+      <td>REGULAR</td>
+      <td>6736067</td>
+      <td>2283184</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>103 ST</td>
-      <td>6809043268</td>
-      <td>26408857862</td>
-      <td>0.0</td>
+      <td>A002</td>
+      <td>R051</td>
+      <td>02-00-00</td>
+      <td>59 ST</td>
+      <td>NQR456W</td>
+      <td>BMT</td>
+      <td>08/25/2018</td>
+      <td>04:00:00</td>
+      <td>REGULAR</td>
+      <td>6736087</td>
+      <td>2283188</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>103 ST-CORONA</td>
-      <td>2936772648</td>
-      <td>3007136644</td>
-      <td>0.0</td>
+      <td>A002</td>
+      <td>R051</td>
+      <td>02-00-00</td>
+      <td>59 ST</td>
+      <td>NQR456W</td>
+      <td>BMT</td>
+      <td>08/25/2018</td>
+      <td>08:00:00</td>
+      <td>REGULAR</td>
+      <td>6736105</td>
+      <td>2283229</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>104 ST</td>
-      <td>201698739525</td>
-      <td>146808927663</td>
-      <td>0.0</td>
+      <td>A002</td>
+      <td>R051</td>
+      <td>02-00-00</td>
+      <td>59 ST</td>
+      <td>NQR456W</td>
+      <td>BMT</td>
+      <td>08/25/2018</td>
+      <td>12:00:00</td>
+      <td>REGULAR</td>
+      <td>6736180</td>
+      <td>2283314</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>110 ST</td>
-      <td>1485948761</td>
-      <td>1430806219</td>
-      <td>0.0</td>
+      <td>A002</td>
+      <td>R051</td>
+      <td>02-00-00</td>
+      <td>59 ST</td>
+      <td>NQR456W</td>
+      <td>BMT</td>
+      <td>08/25/2018</td>
+      <td>16:00:00</td>
+      <td>REGULAR</td>
+      <td>6736349</td>
+      <td>2283384</td>
     </tr>
   </tbody>
 </table>
@@ -852,29 +820,244 @@ df.groupby('STATION').sum().reset_index().head()
 
 
 
-Finally, we could graph these as before.
+# Dropping Columns
+You can also drop columns
 
 
 ```python
-df.columns = [col.strip() for col in df.columns]
+df = df.drop('C/A', axis=1) #If you don't pass the axis=1 parameter, pandas will try and drop a row with the specified index
+df.head()
 ```
+
+
+
+
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>UNIT</th>
+      <th>SCP</th>
+      <th>STATION</th>
+      <th>LINENAME</th>
+      <th>DIVISION</th>
+      <th>date</th>
+      <th>TIME</th>
+      <th>DESC</th>
+      <th>ENTRIES</th>
+      <th>EXITS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>R051</td>
+      <td>02-00-00</td>
+      <td>59 ST</td>
+      <td>NQR456W</td>
+      <td>BMT</td>
+      <td>08/25/2018</td>
+      <td>00:00:00</td>
+      <td>REGULAR</td>
+      <td>6736067</td>
+      <td>2283184</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>R051</td>
+      <td>02-00-00</td>
+      <td>59 ST</td>
+      <td>NQR456W</td>
+      <td>BMT</td>
+      <td>08/25/2018</td>
+      <td>04:00:00</td>
+      <td>REGULAR</td>
+      <td>6736087</td>
+      <td>2283188</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>R051</td>
+      <td>02-00-00</td>
+      <td>59 ST</td>
+      <td>NQR456W</td>
+      <td>BMT</td>
+      <td>08/25/2018</td>
+      <td>08:00:00</td>
+      <td>REGULAR</td>
+      <td>6736105</td>
+      <td>2283229</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>R051</td>
+      <td>02-00-00</td>
+      <td>59 ST</td>
+      <td>NQR456W</td>
+      <td>BMT</td>
+      <td>08/25/2018</td>
+      <td>12:00:00</td>
+      <td>REGULAR</td>
+      <td>6736180</td>
+      <td>2283314</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>R051</td>
+      <td>02-00-00</td>
+      <td>59 ST</td>
+      <td>NQR456W</td>
+      <td>BMT</td>
+      <td>08/25/2018</td>
+      <td>16:00:00</td>
+      <td>REGULAR</td>
+      <td>6736349</td>
+      <td>2283384</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+# Setting a New Index
+It can also be helpful to set an index such as when graphing.
 
 
 ```python
-to_graph = df.groupby('STATION').sum().sort_values(by='ENTRIES')[['ENTRIES', 'EXITS']]
-#Recall that default behavior for .sort_values() is ascending.
-#Hence, we look at the tail rather then head for top values
-#Alternatively, we could use .sort_values(ascending=False) followed by the .head() method
-to_graph.tail(10).plot(kind='barh');
-plt.title('Top 10 Stations Based on Number of Entries.');
-plt.xlabel('Number of Entries/Exits');
+df = df.set_index('date')
+df.head()
 ```
 
 
-![png](index_files/index_42_0.png)
 
 
-## Summary
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
 
-We've seen in this lesson the differences between Pandas (Series and DataFrames) and Python native (Dictionaries and Lists) data types. We've also looked at how to create the Series and DataFrames from dictionaries and lists, and how to manipulate both columns and the index in DataFrame. In the next lesson, we'll get some more hands on practice. 
+    .dataframe thead th {
+        text-align: left;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>UNIT</th>
+      <th>SCP</th>
+      <th>STATION</th>
+      <th>LINENAME</th>
+      <th>DIVISION</th>
+      <th>TIME</th>
+      <th>DESC</th>
+      <th>ENTRIES</th>
+      <th>EXITS</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>08/25/2018</th>
+      <td>R051</td>
+      <td>02-00-00</td>
+      <td>59 ST</td>
+      <td>NQR456W</td>
+      <td>BMT</td>
+      <td>00:00:00</td>
+      <td>REGULAR</td>
+      <td>6736067</td>
+      <td>2283184</td>
+    </tr>
+    <tr>
+      <th>08/25/2018</th>
+      <td>R051</td>
+      <td>02-00-00</td>
+      <td>59 ST</td>
+      <td>NQR456W</td>
+      <td>BMT</td>
+      <td>04:00:00</td>
+      <td>REGULAR</td>
+      <td>6736087</td>
+      <td>2283188</td>
+    </tr>
+    <tr>
+      <th>08/25/2018</th>
+      <td>R051</td>
+      <td>02-00-00</td>
+      <td>59 ST</td>
+      <td>NQR456W</td>
+      <td>BMT</td>
+      <td>08:00:00</td>
+      <td>REGULAR</td>
+      <td>6736105</td>
+      <td>2283229</td>
+    </tr>
+    <tr>
+      <th>08/25/2018</th>
+      <td>R051</td>
+      <td>02-00-00</td>
+      <td>59 ST</td>
+      <td>NQR456W</td>
+      <td>BMT</td>
+      <td>12:00:00</td>
+      <td>REGULAR</td>
+      <td>6736180</td>
+      <td>2283314</td>
+    </tr>
+    <tr>
+      <th>08/25/2018</th>
+      <td>R051</td>
+      <td>02-00-00</td>
+      <td>59 ST</td>
+      <td>NQR456W</td>
+      <td>BMT</td>
+      <td>16:00:00</td>
+      <td>REGULAR</td>
+      <td>6736349</td>
+      <td>2283384</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+# Summary
+We've seen in this lesson the differences between Pandas (Series and DataFrames) and Python native (Dictionaries and Lists) data types. We've also looked at how to create the Series and DataFrames from dictionaries and lists, and how to manipulate both columns and the index in DataFrame. 
+
+
+```python
+
+```
