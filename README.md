@@ -179,7 +179,7 @@ df.info()
 
 
 # Data Munging/ Manipulation
-This MTA turnstile dataset is a great place for us to get our hands dirty wrangling and cleaning some data!  
+This MTA turnstile dataset is a great place for us to get our hands dirty wrangling and cleaning some data! Here's the data dictionary if you want to know more about the data set http://web.mta.info/developers/resources/nyct/turnstile/ts_Field_Description.txt  
 
 Let's start by filtering the data down to all stations for the N line. To do this, we'll need to extract all "N"s from the LINENAME column, or create a column indicating whether or not the stop is an N line stop.
 
